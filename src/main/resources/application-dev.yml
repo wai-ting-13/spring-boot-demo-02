@@ -11,9 +11,6 @@ spring:
         username: ${DB_USERNAME}
         password: ${DB_PASSWORD}
     jpa:
-        defer-datasource-initialization: true
-        hibernate:
-            ddl-auto: create-drop
         properties:
             hibernate:
                 "[default_schema]": ${DB_SCHEMA}
@@ -21,6 +18,13 @@ spring:
                 "[format_sql]": true
         show-sql: true
         open-in-view: false
+        # May not be useful in and after SIT stage
+        hibernate:
+            ddl-auto: create-drop
+        # Execute `data.sql` after Hibernate is initialised. 
+        # (May not be useful in and after SIT stage)
+        defer-datasource-initialization: true
+    # May not be useful in and after SIT stage
     sql:
         init:
             mode: always
@@ -76,3 +80,6 @@ management:
             enabled: false
         db:
             enabled: true
+logging:
+  level:
+    "[org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer]": error
