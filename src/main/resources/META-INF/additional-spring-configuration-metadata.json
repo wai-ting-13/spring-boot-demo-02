@@ -1,0 +1,72 @@
+{"properties": [
+  {
+    "name": "application.allowed-origin",
+    "type": "java.lang.String",
+    "description": "A description for 'application.allowed-origin'"
+  },
+  {
+    "name": "application.security.jwt.access-token.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.jwt.access-token.expiration'"
+  },
+  {
+    "name": "application.security.jwt.refresh-token.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.jwt.refresh-token.expiration'"
+  },
+  {
+    "name": "application.security.allowed-api-patterns",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.allowed-api-patterns'"
+  },
+  {
+    "name": "application.security.blocked-api-patterns",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.blocked-api-patterns'"
+  },
+  {
+    "name": "application.security.auth-api-prefix",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.auth-api-prefix'"
+  },
+  {
+    "name": "application.rabbitmq.exchange-name",
+    "type": "java.lang.String",
+    "description": "A description for 'application.rabbitmq.exchange-name'"
+  },
+  {
+    "name": "application.rabbitmq.request-queue-name",
+    "type": "java.lang.String",
+    "description": "A description for 'application.rabbitmq.request-queue-name'"
+  },
+  {
+    "name": "application.rabbitmq.reply-queue-name",
+    "type": "java.lang.String",
+    "description": "A description for 'application.rabbitmq.reply-queue-name'"
+  },
+  {
+    "name": "application.rabbitmq.request-routing-key",
+    "type": "java.lang.String",
+    "description": "A description for 'application.rabbitmq.request-routing-key'"
+  },
+  {
+    "name": "application.rabbitmq.reply-routing-key",
+    "type": "java.lang.String",
+    "description": "A description for 'application.rabbitmq.reply-routing-key'"
+  },
+  {
+    "name": "application.rabbitmq.api-key",
+    "type": "java.lang.String",
+    "description": "A description for 'application.rabbitmq.api-key'"
+  },
+  {
+    "name": "application.redis.host",
+    "type": "java.lang.String",
+    "description": "A description for 'application.redis.host'"
+  },
+  {
+    "name": "application.redis.port",
+    "type": "java.lang.String",
+    "description": "A description for 'application.redis.port'"
+  }
+]}

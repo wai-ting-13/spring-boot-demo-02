@@ -1,0 +1,78 @@
+spring:
+    application:
+        name: spring-boot-demo-02
+    # For loading hidden config (i.e. environment variables)
+    config:
+        import: file:.env[.properties]
+    # For JPA and Database
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://${DB_URL}:${DB_PORT}/${DB_NAME}
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+    jpa:
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                "[default_schema]": ${DB_SCHEMA}
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                "[format_sql]": true
+        show-sql: true
+        open-in-view: false
+    sql:
+        init:
+            mode: always
+    rabbitmq:
+        host: ${RABBIT_URL}
+        port: ${RABBIT_PORT}
+        username: ${RABBIT_USERNAME}
+        password: ${RABBIT_PASSWORD}
+# For HTTPS
+server:
+   port: 443
+   ssl:
+      key-store: ${KEYSTORE}
+      key-store-password: ${KEYSTORE_PASSWORD}
+      keyStoreType: PKCS12
+      keyAlias: ${KEYSTORE_ALIAS}
+# == Self-defined Configuration ==
+application:
+    # For CORS
+    allowed-origin: "*"
+    security:
+        # For JWT
+        jwt:
+            access-token:
+                expiration: 120000 # 120 seconds
+            refresh-token:
+                expiration: 6000000 # 10 minutes
+        # For Security Filter
+        allowed-api-patterns: /api/v1/auth/**,/api/v1/books,/actuator/health/**,/api/v1/send
+        blocked-api-patterns: /actuator/**
+        auth-api-prefix: /api/v1/auth
+    rabbitmq:
+        exchange-name: SBQ.DEV.LATEST_BOOK
+        request-queue-name: SBQ.DEV.LATEST_BOOK.REQ
+        reply-queue-name: SBQ.DEV.LATEST_BOOK.REP
+        request-routing-key: SBQ.DEV.LATEST_BOOK.REQ.KEY
+        reply-routing-key: SBQ.DEV.LATEST_BOOK.REP.KEY
+        api-key: ${API_KEY}
+    redis:
+        host: ${REDIS_URL}
+        port: ${REDIS_PORT}
+# For Spring Actuator
+management:
+    endpoint:
+        health:
+            group:
+                custom:
+                    include: db
+                    show-components: always
+            show-details: never
+    health:
+        defaults:
+            enabled: false
+        db:
+            enabled: true

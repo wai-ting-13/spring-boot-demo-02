@@ -1,0 +1,47 @@
+services:
+  database:
+    image: postgres
+    restart: always
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD={DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+  rabbitmq:
+    image: rabbitmq:latest
+    hostname: rabbitmq
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - ${RABBIT_PORT}:${RABBIT_PORT}
+      - ${RABBIT_PORT2}:${RABBIT_PORT2}
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBIT_USERNAME}
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_PASSWORD}
+    configs:
+      - source: rabbitmq-plugins
+        target: /etc/rabbitmq/enabled_plugins
+    volumes:
+      - rabbitmq-lib:/var/lib/rabbitmq/
+      - rabbitmq-log:/var/log/rabbitmq/
+  redis:
+    image: redis
+    container_name: redis_ratelimiter
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+    volumes:
+      - redis-data:/data
+
+configs:
+  rabbitmq-plugins:
+    content: "[rabbitmq_management]."  
+
+volumes:
+  pg-data:
+  rabbitmq-lib:
+  rabbitmq-log:
+  redis-data:
