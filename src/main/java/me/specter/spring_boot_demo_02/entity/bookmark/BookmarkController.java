@@ -34,16 +34,16 @@ public class BookmarkController {
     @PostMapping("/{bookId}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Void> addBookmarks(@PathVariable String bookId){
-        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-         this.bookmarkService.addBookmark(userEmail, bookId);
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+         this.bookmarkService.addBookmark(username, bookId);
          return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{bookId}")
     @PreAuthorize("hasRole('USER')")
     public void deleteBookmarks(@PathVariable String bookId){
-        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-        this.bookmarkService.deleteBookmark(userEmail, bookId);
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        this.bookmarkService.deleteBookmark(username, bookId);
     }
     
 }
