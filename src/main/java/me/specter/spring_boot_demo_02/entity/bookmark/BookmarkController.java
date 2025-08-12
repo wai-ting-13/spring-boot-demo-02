@@ -12,17 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
 import me.specter.spring_boot_demo_02.entity.book.Book;
 
 @RestController
 @RequestMapping("/api/v1/bookmarks")
+@RequiredArgsConstructor
 public class BookmarkController {
 
     private final BookmarkService bookmarkService;
-
-    public BookmarkController(BookmarkService bookmarkService){
-        this.bookmarkService = bookmarkService;
-    }
 
     @GetMapping
     @PreAuthorize("hasRole('USER')")
